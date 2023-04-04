@@ -525,7 +525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AI stands by...
+  m_text: Beginning your journey...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9feff4742be39dd46ad3e059af9db219, type: 2}
   m_sharedMaterial: {fileID: 8787018104406925406, guid: 9feff4742be39dd46ad3e059af9db219, type: 2}
@@ -1295,6 +1295,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3a175d27a0333054f88bbcc392ebc0e5, type: 3}
   backgroundNoise:
   - {fileID: 8300000, guid: 91a21bee976074c4c89ab84ae0ee3ea2, type: 3}
+  - {fileID: 8300000, guid: 7da2c82911d58e84696443bdc784bf45, type: 3}
 --- !u!4 &1134269731
 Transform:
   m_ObjectHideFlags: 0
@@ -1540,7 +1541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e61546bea7f2a74795ab29cfc5f9657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _apiKey: 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
+  _apiKey: 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
   _model: 0
   _maxTokens: 3072
   _temperature: 0.6
