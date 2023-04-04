@@ -11,11 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] ChatGPTConversation chatGPT;
     [SerializeField] TMP_InputField iF_PlayerTalk;
     [SerializeField] TextMeshProUGUI tX_AIReply;
+    [SerializeField] NPCController npc;
 
-    string npcName = "Coco";
+    string npcName = "The Guide";
     string playerName = "Player";
-
-
     private void Awake()
     {
         if(instance == null)
@@ -31,7 +30,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        chatGPT.SendToChatGPT("{\"player_said\":Hello! Who are you? \"}");
+        chatGPT.SendToChatGPT("{\"player_said\":Where am I? What is happpening? \"}");
     }
 
     // Update is called once per frame
@@ -47,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         if(iF_PlayerTalk.text != "")
         {
-            chatGPT.SendToChatGPT("{\"player_said\":" + iF_PlayerTalk.text + "\"}");
+            chatGPT.SendToChatGPT("{\"player_said\":\"" + iF_PlayerTalk.text + "\"}");
             iF_PlayerTalk.text = "";
         }
     }
@@ -55,8 +54,6 @@ public class GameManager : MonoBehaviour
     public void ReceiveChatGPTReply(string message)
     {
         print(message);
-        tX_AIReply.text = message;
-
         try
         {
             //
@@ -71,17 +68,18 @@ public class GameManager : MonoBehaviour
                     message += "}";
                 }
             }
-
             NPCJsonReceiver npcJSON = JsonUtility.FromJson<NPCJsonReceiver>(message);
+            print(npcJSON.reply_to_player);
+            print(npcJSON.environment);
             string talkLine = npcJSON.reply_to_player;
-            tX_AIReply.text = "<color=#ff7082>" + npcName + "</color>" + talkLine;
+            tX_AIReply.text = talkLine;
 
+            npc.ChangeScene(npcJSON.environment);
         }
         catch(Exception e)
         {
-            Debug.Log(e.Message);
-            string talkLine = "Don't say that!";
-            tX_AIReply.text = "<color=#ff7082>" + npcName + ": </color>" + talkLine;
+            string talkLine = "Check console for response.";
+            tX_AIReply.text = talkLine;
         }
     }
 }

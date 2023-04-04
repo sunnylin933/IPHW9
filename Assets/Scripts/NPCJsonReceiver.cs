@@ -6,6 +6,6 @@ using UnityEngine;
 [Serializable]
 public class NPCJsonReceiver
 {
-    public string animation_name;
+    public string environment;
     public string reply_to_player;
 }
